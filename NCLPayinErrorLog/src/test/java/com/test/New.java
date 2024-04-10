@@ -22,7 +22,7 @@ public class New extends BaseClass{
 		
 		launchBroswer("Chrome");
 		
-		String todayDate ="10";
+		String todayDate ="09";
 		
 		getUrl("https://bo.tradeplusonline.com/RocketPlusBackOffice/LogFiles/NCLPayinErrorLog"+todayDate+"apr2024.txt");
 		
@@ -30,8 +30,11 @@ public class New extends BaseClass{
 		Thread.sleep(5000);
 		
 		for (int i = 1; i <=10; i++) {	
-		
+			Thread.sleep(2000);
+
+			
 		try {
+			
 		WebElement first5Sec = driver.findElement(By.xpath("//pre[@style='word-wrap: break-word; white-space: pre-wrap;']"));
 	
 
@@ -61,10 +64,13 @@ public class New extends BaseClass{
 
 				//driver.findElement(By.xpath("//div[text()='Recipients']")).click();
 				
-				driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
+//				driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
+//				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//input[@id=':ci']")).click();
 				Thread.sleep(2000);
 
-				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("venkateshwaran01096@gmail.com");
+				driver.findElement(By.xpath("//input[@id=':ci']")).sendKeys("venkateshwaran01096@gmail.com");
 				Robot r = new Robot();
 				r.keyPress(KeyEvent.VK_ENTER);
 				r.keyRelease(KeyEvent.VK_ENTER);
@@ -96,6 +102,24 @@ public class New extends BaseClass{
 			      r.keyRelease(KeyEvent.VK_ENTER);
 			      
 			      Thread.sleep(10000);
+			      
+			  	driver.findElement(By.xpath("//a[contains(@aria-label,'Automation')]")).click();
+				Thread.sleep(15000);
+
+				
+				
+				WebElement frame = driver.findElement(By.xpath("//iframe[@name='account']"));
+				
+				driver.switchTo().frame(frame);
+				
+				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//div[text()='Sign out']")).click();
+			      
+				Thread.sleep(2000);
+				
+				driver.switchTo().defaultContent();
+
 			      driver.navigate().to("https://bo.tradeplusonline.com/RocketPlusBackOffice/LogFiles/NCLPayinErrorLog"+todayDate+"apr2024.txt");
 			
 			for (int a = 1; a <=10; a++) {
@@ -114,7 +138,6 @@ public class New extends BaseClass{
 			
 			if (text.equals(text1)) {
 				System.out.println("NCL Log No Changes");
-
 
 			} else {
 
@@ -144,12 +167,12 @@ public class New extends BaseClass{
 				driver.findElement(By.xpath("//div[text()='Compose']")).click();
 				Thread.sleep(2000);
 
-				//driver.findElement(By.xpath("//div[text()='Recipients']")).click();
-				
-				driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
+				driver.findElement(By.xpath("//input[@id=':ci']")).click();
 				Thread.sleep(2000);
 
-				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("venkateshwaran01096@gmail.com");
+				driver.findElement(By.xpath("//input[@id=':ci']")).sendKeys("venkateshwaran01096@gmail.com");
+			
+
 				r.keyPress(KeyEvent.VK_ENTER);
 				r.keyRelease(KeyEvent.VK_ENTER);
 				Thread.sleep(2000);
@@ -232,20 +255,20 @@ public class New extends BaseClass{
 
 				
 				
-				WebElement frame = driver.findElement(By.xpath("//iframe[@name='account']"));
+				WebElement frame1 = driver.findElement(By.xpath("//iframe[@name='account']"));
 				
-				driver.switchTo().frame(frame);
+				driver.switchTo().frame(frame1);
 				
 				Thread.sleep(2000);
 
 				driver.findElement(By.xpath("//div[text()='Sign out']")).click();
-				
+				driver.switchTo().defaultContent();
 				
 				
 			
 		}
 			}
-			driver.quit();
+        
 
 		}
 		
@@ -257,7 +280,7 @@ public class New extends BaseClass{
 	    // Perform appropriate actions like logging the error or refreshing the page
 	    WebElement element = driver.findElement(By.xpath("//h2[text()='404 - File or directory not found.']//parent::fieldset"));
 	    element.isDisplayed();
-	    
+	    driver.quit();
 	    System.out.println("File Or Directory Not Found");
 	}
 		}
