@@ -22,170 +22,246 @@ public class New extends BaseClass{
 		
 		launchBroswer("Chrome");
 		
-		getUrl("https://bo.tradeplusonline.com/RocketPlusBackOffice/LogFiles/NCLPayinErrorLog08apr2024.txt");
+		String todayDate ="10";
+		
+		getUrl("https://bo.tradeplusonline.com/RocketPlusBackOffice/LogFiles/NCLPayinErrorLog"+todayDate+"apr2024.txt");
 		
 		
 		Thread.sleep(5000);
 		
+		for (int i = 1; i <=10; i++) {	
 		
+		try {
 		WebElement first5Sec = driver.findElement(By.xpath("//pre[@style='word-wrap: break-word; white-space: pre-wrap;']"));
-		String text = first5Sec.getText();
-		
-		Thread.sleep(5000);
+	
 
-		driver.navigate().refresh();
-		
-		WebElement next5Sec = driver.findElement(By.xpath("//pre[@style='word-wrap: break-word; white-space: pre-wrap;']"));
-		String text1 = next5Sec.getText();
-		
-		
-		
-		if (text.equals(text1)) {
-			System.out.println("No Changes");
+		if (first5Sec.isDisplayed()) {
 			
-			TakesScreenshot ts = (TakesScreenshot) driver;
-			File src = ts.getScreenshotAs(OutputType.FILE);
-			File des = new File("C:\\Users\\Venkateshwaran\\eclipse-workspace\\NCLPayinErrorLog\\NCLPayinErrorLogPicture\\LogPicture.png");
-			Files.copy(src, des);
+			   System.out.println("First Error");
 			
+			   
+			   driver.navigate().to("https://accounts.google.com/InteractiveLogin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=ARZ0qKI-OlL97AHzrSW5jo-HTJUGbvX92-F9JL5tkG0YOoAc--tSk-Ov-Sx3LjsiF09roaEhm4JvDg&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
+				
+				Thread.sleep(5000);
+				driver.findElement(By.xpath("//input[@type='email']")).sendKeys("automationtestingnavia@gmail.com");
+				
+				driver.findElement(By.xpath("//span[text()='Next']")).click();
+				Thread.sleep(6000);
 
-
-		} else {
+				driver.findElement(By.xpath("//input[@type='password']")).sendKeys("NaviaAutomationTesting@24");
+				Thread.sleep(2000);
 
 			
-			System.out.println("Changes");
-			
-			TakesScreenshot ts = (TakesScreenshot) driver;
-			File src = ts.getScreenshotAs(OutputType.FILE);
-			File des = new File("C:\\Users\\Venkateshwaran\\eclipse-workspace\\NCLPayinErrorLog\\NCLPayinErrorLogPictureChanges\\LogPicture.png");
-			Files.copy(src, des);
-driver.navigate().to("https://accounts.google.com/InteractiveLogin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=ARZ0qKI-OlL97AHzrSW5jo-HTJUGbvX92-F9JL5tkG0YOoAc--tSk-Ov-Sx3LjsiF09roaEhm4JvDg&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
-			
-			Thread.sleep(2000);
-			driver.findElement(By.xpath("//input[@type='email']")).sendKeys("automationtestingnavia@gmail.com");
-			
-			driver.findElement(By.xpath("//span[text()='Next']")).click();
-			Thread.sleep(6000);
+				driver.findElement(By.xpath("//span[text()='Next']")).click();
+				Thread.sleep(5000);
+				
+				
+				driver.findElement(By.xpath("//div[text()='Compose']")).click();
+				Thread.sleep(2000);
 
-			driver.findElement(By.xpath("//input[@type='password']")).sendKeys("NaviaAutomationTesting@24");
-			Thread.sleep(2000);
+				//driver.findElement(By.xpath("//div[text()='Recipients']")).click();
+				
+				driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
+				Thread.sleep(2000);
 
-		
-			driver.findElement(By.xpath("//span[text()='Next']")).click();
-			Thread.sleep(10000);
-			
-			
-			driver.findElement(By.xpath("//div[text()='Compose']")).click();
-			Thread.sleep(2000);
+				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("venkateshwaran01096@gmail.com");
+				Robot r = new Robot();
+				r.keyPress(KeyEvent.VK_ENTER);
+				r.keyRelease(KeyEvent.VK_ENTER);
+				Thread.sleep(2000);
+				
+//				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("kiruthika@navia.co.in");
+//				r.keyPress(KeyEvent.VK_ENTER);
+//				r.keyRelease(KeyEvent.VK_ENTER);
+//				Thread.sleep(2000);
+				
+//				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("sandeep@navia.co.in");
+//				r.keyPress(KeyEvent.VK_ENTER);
+//				r.keyRelease(KeyEvent.VK_ENTER);
+//				Thread.sleep(2000);
+				
 
-			//driver.findElement(By.xpath("//div[text()='Recipients']")).click();
-			
-			driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
-			Thread.sleep(2000);
 
-			driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("venkateshwaran01096@gmail.com");
-			Robot r = new Robot();
-			r.keyPress(KeyEvent.VK_ENTER);
-			r.keyRelease(KeyEvent.VK_ENTER);
-			Thread.sleep(2000);
-			
-			driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("kiruthika@navia.co.in");
-			r.keyPress(KeyEvent.VK_ENTER);
-			r.keyRelease(KeyEvent.VK_ENTER);
-			Thread.sleep(2000);
-			
-//			driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("sandeep@navia.co.in");
-//			r.keyPress(KeyEvent.VK_ENTER);
-//			r.keyRelease(KeyEvent.VK_ENTER);
-//			Thread.sleep(2000);
-			
-//			driver.findElement(By.xpath("//div[@aria-label='Cc']")).click();
-//			Thread.sleep(5000);
-	//
-	//
-//			WebElement element = driver.findElement(By.xpath("//input[@id=':co']"));
-//			element.sendKeys("venketsmart4848@gmail.com");
-//			Thread.sleep(2000);
+				driver.findElement(By.xpath("//input[@name='subjectbox']")).sendKeys("NCL Payin First Error Log");
+				Thread.sleep(2000);
 
-			driver.findElement(By.xpath("//input[@name='subjectbox']")).sendKeys("Error Log No Changes");
-			Thread.sleep(2000);
-
-			driver.findElement(By.xpath("//div[@aria-label='Message Body']")).sendKeys("NCL Payin Error Log Picture ");
+				driver.findElement(By.xpath("//div[@aria-label='Message Body']")).sendKeys("NCL Payin First Error Log of the day");
+				
+				Thread.sleep(2000);
+				
+				 r.keyPress(KeyEvent.VK_TAB);
+			      r.keyRelease(KeyEvent.VK_TAB);
+			      
+			      r.keyPress(KeyEvent.VK_ENTER);
+			      r.keyRelease(KeyEvent.VK_ENTER);
+			      
+			      Thread.sleep(10000);
+			      driver.navigate().to("https://bo.tradeplusonline.com/RocketPlusBackOffice/LogFiles/NCLPayinErrorLog"+todayDate+"apr2024.txt");
 			
-			Thread.sleep(2000);
+			for (int a = 1; a <=10; a++) {
+				
+				WebElement first5Sec1 = driver.findElement(By.xpath("//pre[@style='word-wrap: break-word; white-space: pre-wrap;']"));
 
-			driver.findElement(By.xpath("//div[@id=':aj']")).click();
+			String text = first5Sec1.getText();
 			
 			Thread.sleep(5000);
-			StringSelection s = new StringSelection("C:\\Users\\Venkateshwaran\\git\\repository\\EightFourthFive_Testing\\NCLPayinErrorLogPictureChanges");
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, null);
-			 Robot robot = new Robot();
+
+			driver.navigate().refresh();
+			
+			WebElement next5Sec = driver.findElement(By.xpath("//pre[@style='word-wrap: break-word; white-space: pre-wrap;']"));
+			String text1 = next5Sec.getText();
+			
+			
+			if (text.equals(text1)) {
+				System.out.println("NCL Log No Changes");
+
+
+			} else {
+
 				
-	         robot.keyPress(KeyEvent.VK_CONTROL);
-	         robot.keyPress(KeyEvent.VK_V);
-	         robot.keyRelease(KeyEvent.VK_V);
-	         robot.keyRelease(KeyEvent.VK_CONTROL);
-	         robot.keyPress(KeyEvent.VK_ENTER);
-	         robot.keyRelease(KeyEvent.VK_ENTER);
-	         
-	         Thread.sleep(2000);
+				System.out.println("Changes");
+				
+				TakesScreenshot ts = (TakesScreenshot) driver;
+				File src = ts.getScreenshotAs(OutputType.FILE);
+				File des = new File("C:\\Users\\Venkateshwaran\\eclipse-workspace\\NCLPayinErrorLog\\NCLPayinErrorLogPictureChanges\\LogPicture.png");
+				Files.copy(src, des);
+	            driver.navigate().to("https://accounts.google.com/InteractiveLogin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=ARZ0qKI-OlL97AHzrSW5jo-HTJUGbvX92-F9JL5tkG0YOoAc--tSk-Ov-Sx3LjsiF09roaEhm4JvDg&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
+				
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//input[@type='email']")).sendKeys("automationtestingnavia@gmail.com");
+				
+				driver.findElement(By.xpath("//span[text()='Next']")).click();
+				Thread.sleep(6000);
 
-	      // Press "End" key to scroll to the bottom (if needed)
-	      robot.keyPress(KeyEvent.VK_END);
-	      robot.keyRelease(KeyEvent.VK_END);
-	      Thread.sleep(1000);
-
-	      // Press "Shift" + "Tab" to select the last file
-	      robot.keyPress(KeyEvent.VK_SHIFT);
-	      robot.keyPress(KeyEvent.VK_TAB);
-	      Thread.sleep(100);
-	      robot.keyRelease(KeyEvent.VK_SHIFT);
-	      robot.keyRelease(KeyEvent.VK_TAB);
-	      Thread.sleep(1000);
-
-	      robot.keyPress(KeyEvent.VK_END);
-	      robot.keyRelease(KeyEvent.VK_END);
-	      Thread.sleep(1000);
-	      
-	 
-	      // Press "Enter" to attach the file
-	      robot.keyPress(KeyEvent.VK_ENTER);
-	      robot.keyRelease(KeyEvent.VK_ENTER);
-	      Thread.sleep(8000);
-//	      
-	      robot.keyPress(KeyEvent.VK_TAB);
-	      robot.keyRelease(KeyEvent.VK_TAB);
-	      
-	      robot.keyPress(KeyEvent.VK_ENTER);
-	      robot.keyRelease(KeyEvent.VK_ENTER);
-	      
-	      //////////////////////
-	      	
-	      
-	      Thread.sleep(10000);
-	      
-
-	      
-	    //  driver.findElement(By.xpath("(//div[text()='Send'])[2]")).click();
-		
-			driver.findElement(By.xpath("//a[contains(@aria-label,'Automation')]")).click();
-			Thread.sleep(15000);
+				driver.findElement(By.xpath("//input[@type='password']")).sendKeys("NaviaAutomationTesting@24");
+				Thread.sleep(2000);
 
 			
-			
-			WebElement frame = driver.findElement(By.xpath("//iframe[@name='account']"));
-			
-			driver.switchTo().frame(frame);
-			
-			Thread.sleep(2000);
+				driver.findElement(By.xpath("//span[text()='Next']")).click();
+				Thread.sleep(10000);
+				
+				
+				driver.findElement(By.xpath("//div[text()='Compose']")).click();
+				Thread.sleep(2000);
 
-			driver.findElement(By.xpath("//div[text()='Sign out']")).click();
+				//driver.findElement(By.xpath("//div[text()='Recipients']")).click();
+				
+				driver.findElement(By.xpath("(//span[text()='Cc'])[1]")).click();
+				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("venkateshwaran01096@gmail.com");
+				r.keyPress(KeyEvent.VK_ENTER);
+				r.keyRelease(KeyEvent.VK_ENTER);
+				Thread.sleep(2000);
+				
+				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("kiruthika@navia.co.in");
+				r.keyPress(KeyEvent.VK_ENTER);
+				r.keyRelease(KeyEvent.VK_ENTER);
+				Thread.sleep(2000);
+				
+//				driver.findElement(By.xpath("//input[@aria-label='To recipients']")).sendKeys("sandeep@navia.co.in");
+//				r.keyPress(KeyEvent.VK_ENTER);
+//				r.keyRelease(KeyEvent.VK_ENTER);
+//				Thread.sleep(2000);
+				
+
+
+				driver.findElement(By.xpath("//input[@name='subjectbox']")).sendKeys("Error Log  Changed");
+				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//div[@aria-label='Message Body']")).sendKeys("NCL Payin Error Log Picture ");
+				
+				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//div[@id=':aj']")).click();
+				
+				Thread.sleep(5000);
+				StringSelection s = new StringSelection("C:\\Users\\Venkateshwaran\\git\\repository\\EightFourthFive_Testing\\NCLPayinErrorLogPictureChanges");
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, null);
+				 Robot robot = new Robot();
+					
+		         robot.keyPress(KeyEvent.VK_CONTROL);
+		         robot.keyPress(KeyEvent.VK_V);
+		         robot.keyRelease(KeyEvent.VK_V);
+		         robot.keyRelease(KeyEvent.VK_CONTROL);
+		         robot.keyPress(KeyEvent.VK_ENTER);
+		         robot.keyRelease(KeyEvent.VK_ENTER);
+		         
+		         Thread.sleep(2000);
+
+		      // Press "End" key to scroll to the bottom (if needed)
+		      robot.keyPress(KeyEvent.VK_END);
+		      robot.keyRelease(KeyEvent.VK_END);
+		      Thread.sleep(1000);
+
+		      // Press "Shift" + "Tab" to select the last file
+		      robot.keyPress(KeyEvent.VK_SHIFT);
+		      robot.keyPress(KeyEvent.VK_TAB);
+		      Thread.sleep(100);
+		      robot.keyRelease(KeyEvent.VK_SHIFT);
+		      robot.keyRelease(KeyEvent.VK_TAB);
+		      Thread.sleep(1000);
+
+		      robot.keyPress(KeyEvent.VK_END);
+		      robot.keyRelease(KeyEvent.VK_END);
+		      Thread.sleep(1000);
+		      
+		 
+		      // Press "Enter" to attach the file
+		      robot.keyPress(KeyEvent.VK_ENTER);
+		      robot.keyRelease(KeyEvent.VK_ENTER);
+		      Thread.sleep(8000);
+//		      
+		      robot.keyPress(KeyEvent.VK_TAB);
+		      robot.keyRelease(KeyEvent.VK_TAB);
+		      
+		      robot.keyPress(KeyEvent.VK_ENTER);
+		      robot.keyRelease(KeyEvent.VK_ENTER);
+		      
+		      //////////////////////
+		      	
+		      
+		      Thread.sleep(10000);
+		      
+
+		      
+		    //  driver.findElement(By.xpath("(//div[text()='Send'])[2]")).click();
 			
-			
-			driver.quit();
+				driver.findElement(By.xpath("//a[contains(@aria-label,'Automation')]")).click();
+				Thread.sleep(15000);
+
+				
+				
+				WebElement frame = driver.findElement(By.xpath("//iframe[@name='account']"));
+				
+				driver.switchTo().frame(frame);
+				
+				Thread.sleep(2000);
+
+				driver.findElement(By.xpath("//div[text()='Sign out']")).click();
+				
+				
+				
 			
 		}
+			}
+			driver.quit();
+
+		}
 		
+	}catch (org.openqa.selenium.NoSuchElementException e) {
+		Thread.sleep(5000);
+
+	    // Handle the absence of the element here
+	    System.out.println("Element not found: " + e.getMessage());
+	    // Perform appropriate actions like logging the error or refreshing the page
+	    WebElement element = driver.findElement(By.xpath("//h2[text()='404 - File or directory not found.']//parent::fieldset"));
+	    element.isDisplayed();
+	    
+	    System.out.println("File Or Directory Not Found");
+	}
+		}
+	}
 	}
 
-}
+
